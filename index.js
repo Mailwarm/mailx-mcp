@@ -18,6 +18,7 @@ import {
     ListToolsRequestSchema,
     CallToolRequestSchema,
     ListResourcesRequestSchema,
+    ListResourceTemplatesRequestSchema,
     ReadResourceRequestSchema,
     ListPromptsRequestSchema,
     GetPromptRequestSchema,
@@ -33,7 +34,7 @@ async function main() {
     await upstream.connect(new StreamableHTTPClientTransport(new URL(REMOTE_URL)));
 
     const server = new Server(
-        { name: 'mailx', version: '1.0.0' },
+        { name: 'mailx-tools', version: '1.0.0' },
         {
             capabilities: {
                 tools: { listChanged: false },
@@ -46,6 +47,9 @@ async function main() {
     server.setRequestHandler(ListToolsRequestSchema, () => upstream.listTools());
     server.setRequestHandler(CallToolRequestSchema, (req) => upstream.callTool(req.params));
     server.setRequestHandler(ListResourcesRequestSchema, () => upstream.listResources());
+    // No parameterized resource templates — return empty locally so inspectors
+    // don't get a "method not found" from upstream.
+    server.setRequestHandler(ListResourceTemplatesRequestSchema, () => ({ resourceTemplates: [] }));
     server.setRequestHandler(ReadResourceRequestSchema, (req) => upstream.readResource(req.params));
     server.setRequestHandler(ListPromptsRequestSchema, () => upstream.listPrompts());
     server.setRequestHandler(GetPromptRequestSchema, (req) => upstream.getPrompt(req.params));
