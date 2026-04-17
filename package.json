@@ -1,0 +1,53 @@
+{
+  "name": "@mailwarm/mailx-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for email deliverability tools — SPF, DKIM, DMARC, BIMI, blacklists, SMTP/IMAP, DNS lookups, and record generation. Stdio bridge to themailx.com/mcp.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "mailx-mcp": "./index.js"
+  },
+  "mcpName": "io.github.mailwarm/mailx-mcp",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "email",
+    "deliverability",
+    "spf",
+    "dkim",
+    "dmarc",
+    "bimi",
+    "blacklist",
+    "smtp",
+    "imap",
+    "dns"
+  ],
+  "author": {
+    "name": "MailX",
+    "email": "hello@themailx.com",
+    "url": "https://themailx.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mailwarm/mailx-mcp.git"
+  },
+  "homepage": "https://themailx.com/mcp/docs",
+  "bugs": {
+    "url": "https://github.com/Mailwarm/mailx-mcp/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ]
+}
